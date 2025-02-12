@@ -26,6 +26,14 @@ t_list = [0]
 
 vp = [0, 0]
 
+def minmax(list):
+    minimum = min(list)
+    maksimum = max(list)
+    if abs(minimum) > abs(maksimum):
+        return minimum
+    else:
+        return maksimum
+
 def drag(vel):
     if vel > 0: # sikkrer fortegn som motvirker hastighet
         sign = -1
@@ -76,31 +84,13 @@ while t < 20:
     a_list.append(a)
     t_list.append(t)
 
-min_x = min(x_list)
-max_x = max(x_list)
-if abs(min_x) > abs(max_x):
-    x_res = min_x
-else:
-    x_res = max_x
-
-min_v = min(v_list)
-max_v = max(v_list)
-if abs(min_v) > abs(max_v):
-    v_res = min_v
-else:
-    v_res = max_v
-
-min_a = min(a_list)
-max_a = max(a_list)
-if abs(min_a) > abs(max_a):
-    a_res = min_a
-else:
-    a_res = max_a
+x_res = minmax(x_list)
+v_res = minmax(v_list)
+a_res = minmax(a_list)
 
 print(f'Største hastighet = {round(v_res, 2)} m/s')
 print(f'Største akselerasjon = {round(a_res, 2)} m/s2')
 print(f'Største avstand fra platform = {abs(round(x_res, 2))} m')
-
 
 zero_line = np.zeros(len(t_list))
 
